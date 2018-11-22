@@ -14,10 +14,7 @@ const myApp = {
   },
   // get data avec le nombre généré + api + trigger displayData
   getData: function(id) {
-    console.log('this.apiPokeIndex + id :', this.apiPokeIndex + id);
     $.getJSON(this.apiPokeIndex + id, function(data) {
-      console.log('1');
-      console.log('data :', data);
       myApp.displayData(data);
     });
   },
@@ -30,7 +27,6 @@ const myApp = {
   },
   // Mise en forme HTML
   displayData: function(obj) {
-    console.log('display');
     $('#name').html('Name : ' + obj.name.toUpperCase())
     $("#img").attr("src", obj.sprites.front_default);
     $('#addPoke').click(function () {
@@ -40,7 +36,6 @@ const myApp = {
   // Ajoute le pokemon a l'equipe
   addToTeam: function(obj) {
     const items = {...localStorage};
-    console.log(Object.keys(items).length);
     if (Object.keys(items).length >= 6) {
       swal({
         title: 'Oups',
@@ -73,11 +68,8 @@ const myApp = {
   searchPoke: function() {
     $('#search').click(function() {
       const name = $('#pokeName').val();
-      console.log('name :', name);
       const items = Object.values({...localStorage});
-      console.log('name :', items);
       const pokeName = items.find(e => e === name);
-      console.log('pokeName :', pokeName);
       if (pokeName) {
         swal({
           title: 'Team Pokemon',
